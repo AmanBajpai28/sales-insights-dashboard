@@ -1,19 +1,33 @@
-# sales-insights-dashboard
-Interactive Power BI dashboard providing detailed sales insights, performance trends, and key business KPIs.
-# Sales Insights Data Analysis Project
+# 📊 Sales Insights Data Analysis Project
+This project shows how raw sales data from a MySQL database can be transformed and visualised with Power BI.  
+It contains the original database dump, a cleaned version, curated SQL analyses, and an interactive dashboard.
 
-This project demonstrates how raw sales data from a MySQL database can be transformed and visualised with Power BI.  
-It contains the original database dump, a cleaned version, example SQL analyses, and an interactive Power BI dashboard.
+---
+
+## 📁 Project Structure
+
+| File | Description |
+|------|-------------|
+| `sales_dashboard.pbix` | Power BI dashboard file containing visuals and insights |
+| `raw_sales_data_dump.sql` | Original unprocessed sales database dump |
+| `sales_db_cleaned.sql` | Cleaned version of the sales database for Power BI |
+| `README.md` | Documentation of the project setup, SQL logic, and dashboard features |
+
+---
+
+## ▶️ How to Use the Power BI Report
+1. **Open** `sales_dashboard.pbix` in Power BI Desktop.  
+2. **Update** the data‑source settings to point to your MySQL server.  
+3. **Refresh** the data and explore visuals, filters, and KPIs.
 
 ---
 
 ## 🔧 Setup Instructions
-
 1. **Install MySQL** on your local machine.  
 2. **Import the database**  
-   - For the untouched dataset use `raw_sales_data_dump.sql`.  
-   - For the prepared dataset (cleaned & normalised) use `sales_db_cleaned.sql`.  
-3. **Connect Power BI Desktop** to your local MySQL instance or run the SQL queries below for ad‑hoc exploration.
+   - Use **`raw_sales_data_dump.sql`** for the untouched dataset.  
+   - Use **`sales_db_cleaned.sql`** for the cleaned and normalised dataset.  
+3. **Connect Power BI Desktop** to your local MySQL instance *or* run the SQL queries below for ad‑hoc exploration.
 
 ---
 
@@ -34,17 +48,14 @@ It contains the original database dump, a cleaned version, example SQL analyses,
 ---
 
 ## 📊 Power BI Dashboard Highlights
-
-- **Revenue trends** by year, market and currency  
+- **Revenue trends** by year, market, and currency  
 - **Product & customer segmentation** with dynamic slicers  
 - **Currency normalisation** for INR ↔ USD comparison  
 
-### Example Power Query step (currency normalisation)
-
+### 💱 Example Power Query Step (Currency Normalisation)
 ```powerquery
 = Table.AddColumn(#"Filtered Rows", "norm_amount",
     each if [currency] = "USD" or [currency] = "USD#(cr)"
-         then [sales_amount] * 75        // FX rate placeholder
+         then [sales_amount] * 75   // FX‑rate placeholder
          else [sales_amount],
     type number)
-
